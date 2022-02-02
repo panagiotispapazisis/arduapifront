@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { singIn } from './slices/userSlice'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.user)
+  useEffect(() => {
+    console.log(user.isAuth)
+    console.log(user.token)
+  }, [user]);
+
+  return <div>
+    <button onClick={() => dispatch(singIn({ email: "panagiotis60@outlook.com", password: "123456" }))} >press</button>
+    <button onClick={() => dispatch(singIn({ email: "panagiSSSSots60@outlook.com", password: "123456" }))} >press</button>
+
+  </div>;
 }
 
 export default App;
